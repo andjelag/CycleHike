@@ -1,0 +1,142 @@
+<div *ngIf="!editRouteShow">
+  <h1 *ngIf="futureRoutes.length != 0 " style="text-align: center;">Predstojeće akcije</h1>
+  <div *ngFor="let route of futureRoutes">
+    <a class="card" (click)="openRoute(route)">
+      <div class="card-content">
+        <h2 class="card-title">{{route.name}}</h2>
+        <p class="card-summary">{{route.summary}}</p>
+        <p class="card-date">{{formatedDate(route.date)}}</p>
+      </div>
+      <img src="{{route.photo}}" class="route-icons">
+    </a>
+    <div class="futureRoutesCard">
+    <button id="edit-route-button" (click)="openEditRoute(route.id)">Izmeni akciju</button>
+    <button id="cancel-route-button" (click)="cancelRoute(route.id)">Obriši akciju</button>
+    </div>
+  </div>
+  <h1 *ngIf="doneRoutes.length  != 0 " style="text-align: center; margin-top: 50px;">Prethodne akcije</h1>
+  <div *ngFor="let route of doneRoutes">
+    <a class="card" (click)="openRoute(route)">
+      <div class="card-content">
+        <h2 class="card-title">{{route.name}}</h2>
+        <p class="card-summary">{{route.summary}}</p>
+        <p class="card-date">{{formatedDate(route.date)}}</p>
+      </div>
+      <img src="{{route.photo}}" class="route-icons">
+    </a>
+  </div>
+</div>
+<div *ngIf="editRouteShow">
+  <div class="loginForm">
+    <div class="loginTitleText">
+        Izmeni akciju
+    </div>
+    <form>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required name="name" [(ngModel)]="routeToEdit.name">
+                <div class="underline"></div>
+                <label for="">Ime akcije</label>
+                <div class="form-error-messages">{{nameErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row textarea-row">
+            <div class="input-data textarea">
+               <textarea rows="8" cols="80" name="summary" required [(ngModel)]="routeToEdit.summary"></textarea>
+               <br />
+               <div class="underline"></div>
+               <label for="">Sažetak opisa</label>
+               <div class="form-error-messages">{{summaryErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row textarea-row">
+            <div class="input-data textarea">
+               <textarea rows="8" cols="80" required name="description" [(ngModel)]="routeToEdit.description"></textarea>
+               <br />
+               <br />
+               <div class="underline"></div>
+               <label for="">Opis akcije</label>
+               <div class="form-error-messages">{{descriptionErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" min="0" required name="capacity" [(ngModel)]="capacity">
+                <div class="underline"></div>
+                <label for="">Broj mesta</label>
+                <div class="form-error-messages">{{capacityErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <span class="date-label" >Datum održavanja</span>
+            <div class="input-data">
+                <input type="datetime-local" required name="date" [(ngModel)]="routeToEdit.date">
+                <div class="form-error-messages">{{dateErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="file" (change)="filePhotoUpload()" class="file-upload-button" accept=".png,.jpg" #fileInput
+                    id="filePhoto" hidden>
+                <span for="">Slika</span>
+                <span id="fileUploadLabel">Promeni sliku</span>
+                <span id="fileChosenLabel">{{filePhotoChosenLabel}}</span>
+            </div>
+        </div>
+        <span>Ucrtajte rutu ili ubacite gpx fajl</span>
+        <div id="map" style="width:100%"></div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="file" (change)="fileGpxUpload()" class="file-upload-button" accept=".gpx" #fileInput
+                    id="fileGpx" hidden>
+                <span for="">Gpx</span>
+                <span id="fileUploadLabel">Promeni fajl</span>
+                <span id="fileChosenLabel">{{fileGpxChosenLabel}}</span>
+                <div class="form-error-messages">{{gpxErrorMessage}}</div>
+            </div>
+        </div>
+        <span style="margin-left: 20px;">Unesite vrhove:</span>
+        <div class="form-row" *ngFor="let peak of peaks; let i = index">
+            <div class="input-data">
+                <input type="text" required name="name{{ i }}" [(ngModel)]="peak.name">
+                <div class="underline"></div>
+                <label for="">Naziv vrha</label>
+                <div class="form-error-messages">{{peaksErrorMessages[i].name}}</div>
+            </div>
+            <div class="input-data">
+                <input type="text" required name="elevation{{ i }}" [(ngModel)]="peak.elevation">
+                <div class="underline"></div>
+                <label for="">Visina (u metrima)</label>
+                <div class="form-error-messages">{{peaksErrorMessages[i].elevation}}</div>
+            </div>
+            <button type="button" (click)="removePeak(i)" class="cancel">-</button>
+            <br>
+        </div>
+        <button type="button" (click)="addPeak()" class="accept-button">Dodaj vrh</button>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" min="0" required name="price" [(ngModel)]="price">
+                <div class="underline"></div>
+                <label for="">Cena</label>
+                <div class="form-error-messages">{{priceErrorMessage}}</div>
+            </div>
+        </div>        
+        <div class="form-row-for-submit">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Izmeni akciju" (click)="editRoute(routeToEdit.id)">
+                </div>
+            </div>
+        </div>
+        <div class="form-row-for-submit">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner-cancel"></div>
+                    <input type="submit" value="Odustani" (click)="editRouteShow = false">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

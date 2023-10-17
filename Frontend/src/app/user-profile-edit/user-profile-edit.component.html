@@ -1,0 +1,81 @@
+<div *ngIf="user" class="loginForm">
+    <form *ngIf="user.role != 'admin'">
+        
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required name="forename" [(ngModel)]="user.forename">
+                <div class="underline"></div>
+                <label for="">Ime</label>
+                <div class="form-error-messages">{{forenameErrorMessage}}</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required name="surname" [(ngModel)]="user.surname">
+                <div class="underline"></div>
+                <label for="">Prezime</label>
+                <div class="form-error-messages">{{surnameErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required name="phone" [(ngModel)]="user.phone">
+                <div class="underline"></div>
+                <label for="">Broj telefona</label>
+                <div class="form-error-messages">{{phoneErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="file" (change)="fileUpload()" class="file-upload-button" accept=".png,.jpg" #fileInput
+                    id="file" hidden>
+                <span for="">Slika</span>
+                <span id="fileUploadLabel">Izaberi sliku</span>
+                <span id="fileChosenLabel">{{fileChosenLabel}}</span>
+            </div>
+        </div>
+        <div class="form-row-for-submit">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Sačuvaj izmene" (click)="editUser()">
+                </div>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="password" required name="password" [(ngModel)]="oldPassword">
+                <div class="underline"></div>
+                <label for="">Stara lozinka</label>
+                <div class="form-error-messages">{{oldPasswordErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="password" required name="password" [(ngModel)]="newPassword">
+                <div class="underline"></div>
+                <label for="">Nova lozinka</label>
+                <div class="form-error-messages">{{newPasswordErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="password" required name="passwordCheck" [(ngModel)]="passwordCheck">
+                <div class="underline"></div>
+                <label for="">Ponovite lozinku</label>
+                <div class="form-error-messages">{{passwordCheckErrorMessage}}</div>
+            </div>
+        </div>
+        <div class="form-row-for-submit">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Promeni lozinku" (click)="changePassword()">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

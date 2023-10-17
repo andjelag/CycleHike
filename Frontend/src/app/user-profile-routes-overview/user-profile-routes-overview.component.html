@@ -1,0 +1,24 @@
+<h1 *ngIf="userFutureRoutes.length != 0 " style="text-align: center;">Predstojeće akcije</h1>
+<div *ngFor="let route of userFutureRoutes" class="futureRoutesCard">
+<a  class="card" (click)="openRoute(route)">
+    <div class="card-content">
+      <h2 class="card-title">{{route.name}}</h2>
+      <p class="card-summary">{{route.summary}}</p>
+      <p class="card-date">{{formatedDate(route.date)}}</p>
+    </div>
+    <img src="{{route.photo}}" class="route-icons">
+</a>
+<!--<button id="cancel-route-button" (click)="cancelRoute(route.id)">Odustani od akcije</button>-->
+</div>
+<h1 *ngIf="userDoneRoutes.length  != 0 "  style="text-align: center; margin-top: 50px;">Prethodne akcije</h1>
+<div *ngFor="let route of userDoneRoutes">
+<a class="card" (click)="openRoute(route)">
+    <div class="card-content">
+      <h2 class="card-title">{{route.name}}</h2>
+      <p class="card-summary">{{route.summary}}</p>
+      <p class="card-date">{{formatedDate(route.date)}}</p>
+    </div>
+    <img src="{{route.photo}}" class="route-icons">
+</a>
+</div>
+<h1 *ngIf="userDoneRoutes.length == 0 && userFutureRoutes.length == 0">Nema ruta za prikazivanje.</h1>

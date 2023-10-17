@@ -1,0 +1,8 @@
+.leaflet-draw-actions a.leaflet-draw-draw-polyline {
+    background-color: #ff0000; /* Replace with your desired background color */
+  }
+  
+  /* Change the font color (text color) of the polyline button */
+  .leaflet-draw-actions a.leaflet-draw-draw-polyline span {
+    color: #ffffff; /* Replace with your desired font color */
+  }

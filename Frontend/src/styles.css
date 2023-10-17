@@ -1,0 +1,955 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Raleway' !important;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 8px 0;
+}
+
+p {
+    margin: 0;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: rgb(4, 2, 31);
+    font-weight: 600;
+    padding-right: 1%;
+    z-index: 100;
+}
+
+.toolbar #logo {
+    margin: 0 16px;
+    content: url("./assets/mountain_logo.webp");
+}
+
+.toolbar img:hover {
+    cursor: pointer;
+}
+
+.toolbar button {
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 0px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #8bd2a3;
+    color: white;
+}
+
+.toolbar #signup {
+    background-color: #0c9439;
+    margin-right: -16px;
+    position: relative;
+    perspective: none;
+    z-index: 2;
+}
+
+.toolbar #login {
+    border-radius: 0 20px 20px 0;
+    padding-left: 25px;
+    color: darkslategray;
+}
+
+.toolbar #logout {
+    border-radius: 20px 20px;
+    margin-right: 5px;
+    color: darkslategray;
+}
+
+.toolbar #signup:hover {
+    background-color: #20a74d;
+    cursor: pointer;
+}
+
+.toolbar #login:hover {
+    background-color: #6dcb8c;
+    cursor: pointer;
+}
+
+.toolbar #logout:hover {
+    background-color: #6dcb8c;
+    cursor: pointer;
+}
+
+.toolbar #profilePhotoButton {
+    height: 40px;
+    margin-top: 2px;
+    width: 40px;
+    border-radius: 20px 20px;
+    object-fit: contain;
+}
+
+.toolbar #profilePhotoButton:hover {
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.content {
+    display: flex;
+    margin: 0 auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+.start-page-search {
+    background-image: url("./assets/mountain_background_3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 98vw;
+    height: 60vh;
+    text-align: center;
+    padding-top: 25vh;
+    margin-bottom: 5vh;
+}
+
+.search {
+    font-weight: bold;
+    letter-spacing: 0.5vw;
+    color: azure;
+    padding: 50px 50px;
+}
+
+#text {
+    font-size: 9vh;
+    text-shadow: 5px 5px 4px black;
+    font-weight: 800;
+}
+
+.inputSearchDiv {
+    padding: auto;
+    margin-top: 2vh;
+    background-color: azure;
+    width: 41vw;
+    height: 8vh;
+    margin-left: 25vw;
+    border-radius: 5vh;
+    overflow: auto;
+    padding-top: 3vh;
+}
+
+.inputSearchDiv img {
+    content: url("./assets/search-icon.png");
+    float: left;
+    height: 4vh;
+    padding-top: 0.8vh;
+    padding-left: 1vw;
+    padding-right: 2vw;
+}
+
+
+#inputSearchStartPage {
+    background-color: azure;
+    float: left;
+    height: 5vh;
+    width: 33vw;
+    font-size: 4vh;
+    color: dimgrey;
+    border: solid 0;
+}
+
+#inputSearchStartPage:focus {
+    outline: none;
+    border: none;
+}
+
+
+svg.material-icons {
+    height: 24px;
+    width: auto;
+}
+
+svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+}
+
+.card svg.material-icons path {
+    fill: #888;
+}
+
+#routesShown {
+    all: inherit;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+    width: 90vw;
+}
+
+.card {
+    all: unset;
+    border-radius: 4px;
+    border: 1px solid #cddfcd;
+    height: 170px;
+    width: 350px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+    /*background-color: #b5e1c4;*/
+    background-color: #cddfcd;
+}
+
+.route-icons {
+    width: 40%;
+    height: 60%;
+    margin-left: 10px;
+    object-fit: cover;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.card-content {
+    height: 100%;
+    width: 60%;
+    display: grid;
+    grid-template-rows: [row1-start] 25% [row1-end] 60% [third-line] auto [last-line];
+}
+
+.card-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-date {
+    font-style: italic;
+}
+
+.card:not(:last-child) {
+    margin-right: 0;
+}
+
+.card.card-small {
+    height: 16px;
+    width: 168px;
+}
+
+.card:not(.highlight-card) {
+    cursor: pointer;
+}
+
+.card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+}
+
+.card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+}
+
+.card.card.highlight-card span {
+    margin-left: 60px;
+}
+
+a,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+
+.terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+}
+
+.terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+}
+
+.circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+}
+
+.circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+}
+
+svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+}
+
+/*////////////////////////////////// LoginForm ////////////////////////////////////////*/
+.loginFormWrapper {
+    margin-top: 15vh;
+    font-size: x-large;
+    max-width: 700px;
+    background-image: url("./assets/mountain_background_3.jpg");
+    background-size: cover;
+    width: 700px;
+    padding-left: 50px;
+    padding-right: 35px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.loginForm {
+    font-size: x-large;
+    max-width: 600px;
+    background: #fff;
+    width: 600px;
+    padding: 25px 40px 25px 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.loginTitleText {
+    text-align: center;
+    font-size: 41px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    background: -webkit-linear-gradient(right, #5fb57c, #0b8834, #5fb57c, #0b8834);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loginForm form {
+    padding: 30px 0 0 0;
+}
+
+.loginForm form .form-row {
+    display: flex;
+    margin: 32px 0;
+}
+
+.textarea-row {
+    display: flex;
+    padding-top: 10px;
+}
+
+.textarea-row .textarea .form-error-messages {
+    display: flex;
+    padding-top: 0;
+    margin-top: -28px;
+} 
+
+.loginForm form .form-row-for-submit {
+    margin: 32px 0;
+}
+
+form .form-row .input-data {
+    width: 100%;
+    height: 50px;
+    margin: 0 20px;
+    position: relative;
+}
+
+form .form-row .textarea{
+    height: 70px;
+}
+
+.input-data input,
+.textarea textarea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+    padding-top: 3px;
+    
+    font-family: 'Raleway' !important;
+}
+
+.input-data input:focus~label, .textarea textarea:focus ~ label,
+.input-data input:valid~label, .textarea textarea:valid ~ label {
+    transform: translateY(-25px);
+    font-size: 14px;
+    color: #0b8834;
+}
+
+.input-data input:focus,
+.input-data input:valid,
+.textarea textarea:focus,
+.textarea textarea:valid {
+    outline: none;
+    border: none;
+    margin-bottom: 25px;
+}
+
+.textarea textarea{
+    resize: none;
+    padding-top: 3px;
+  }
+
+.input-data label {
+    position: absolute;
+    pointer-events: none;
+    bottom: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.textarea label{
+    width: 100%;
+    bottom: 40px;
+    background: #fff;
+  }
+
+.input-data span {
+    position: absolute;
+    pointer-events: none;
+    bottom: 17px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-error-messages {
+    font-size: 16px;
+    color: red;
+}
+
+.form-error-messages-two{
+    font-size: 50px;
+    color: red;
+}
+
+.form-message {
+    font-size: 16px;
+    margin-top: -10px;
+    height: 30px;
+    text-align: center;
+}
+
+.file-upload-button {
+    margin-left: 50px;
+    opacity: 0;
+}
+
+#fileUploadLabel {
+    margin-left: 50px;
+    background-color: #20a74d;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    bottom: 14px;
+}
+
+#fileChosenLabel {
+    margin-left: 160px;
+    bottom: 18px;
+}
+
+.input-data .underline {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+}
+
+.input-data .underline:before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: #0b8834;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.textarea .underline{
+    margin-top: 10px;
+}
+
+.textarea .underline:before{
+    margin-top: 10px;
+}
+
+.input-data input:focus~.underline:before,
+.input-data input:valid~.underline:before,
+.textarea textarea:focus ~ .underline:before,
+.textarea textarea:valid ~ .underline:before {
+    transform: scale(1);
+}
+
+.submit-btn .input-data {
+    overflow: hidden;
+    height: 45px !important;
+    width: 100% !important;
+}
+
+.submit-btn .input-data .inner {
+    height: 100%;
+    width: 300%;
+    position: absolute;
+    left: -100%;
+    background: -webkit-linear-gradient(right, #5fb57c, #0b8834, #5fb57c, #0b8834);
+    transition: all 0.4s;
+}
+
+.submit-btn .input-data .inner-cancel {
+    height: 100%;
+    width: 300%;
+    position: absolute;
+    left: -100%;
+    background: -webkit-linear-gradient(right, #b55f5f, #ae3737, #b55f5f, #ae3737);
+    transition: all 0.4s;
+}
+
+.submit-btn .input-data:hover .inner {
+    left: 0;
+}
+
+.submit-btn .input-data:hover .inner-cancel {
+    left: 0;
+}
+
+.submit-btn .input-data input {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+/*////////////////////////////////Route Page/////////////////////////////*/
+.route-card {
+    margin-top: 70px;
+    width: 90%;
+}
+
+.route-card-end {
+    width: 90%;
+}
+
+.route-title-date-grid {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.route-title {
+    font-size: 10vh;
+    margin-bottom: 0;
+}
+
+.route-date {
+    bottom: 0;
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.route-photo {
+    width: 100%;
+    height: 60%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    object-fit: cover;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.route-summary {
+    font-size: 18px;
+    margin-bottom: 2%;
+}
+
+.route-information {
+    font-size: 18px;
+}
+
+#map {
+    height: 400px;
+    width: 90%;
+}
+
+#downloadGpxButton {
+    height: 40px;
+    margin-left: 35%;
+    margin-top: 10px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #8bd2a3;
+    padding-left: 25px;
+    color: darkslategray;
+}
+
+#downloadGpxButton:hover {
+    background-color: #6dcb8c;
+    cursor: pointer;
+}
+
+.registerForActivityButton {
+    height: 50px;
+    margin-left: 37%;
+    margin-top: 0px;
+    font-size: large;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 35px 35px;
+    background-color: #0c9439;
+    color: white;
+}
+
+
+.registerForActivityButton:hover {
+    background-color: #20a74d;
+    cursor: pointer;
+}
+
+.registerForActivityButtonDisabled {
+    height: 50px;
+    margin-left: 37%;
+    margin-top: 0px;
+    font-size: large;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 35px 35px;
+    background-color: darkgray;
+    color: white;
+}
+
+.not-active-p{
+    margin-top: 5px;
+    justify-content: center;
+    text-align: center;
+    color: rgb(95, 93, 93);
+}
+
+/*//////////////////////////////// User Profile /////////////////////////////*/
+.left-menu {
+    margin-top: 70px;
+    margin-left: 20px;
+    position: fixed;
+    padding-top: 20px;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: white;
+}
+
+.menu-list {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.menu-list li a.active-link {
+    background-color: #eee;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-list li a:hover {
+    background-color: #ddd;
+}
+
+.right-content {
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+.futureRoutesCard {
+    text-align: center;
+}
+
+#cancel-route-button {
+    height: 40px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #d28b8b;
+    color: white;
+    margin-bottom: 30px;
+}
+
+#cancel-route-button:hover {
+    background-color: #cf7373;
+    cursor: pointer;
+}
+
+.cancel {
+    height: 30px;
+    font-size: medium;
+    text-align: center;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #d28b8b;
+    color: white;
+    margin-top: 20px;
+}
+
+#cancel:hover {
+    background-color: #cf7373;
+    cursor: pointer;
+}
+
+#edit-route-button {
+    height: 40px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #d2c48b;
+    color: white;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+#edit-route-button:hover {
+    background-color: #cfb773;
+    cursor: pointer;
+}
+
+
+/*//////////////// Admin ///////////////*/
+.admin-welcome-text {
+    margin-top: 30vh;
+    font-size: 10vh;
+}
+
+.admin-start-menu {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-start-menu .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    gap: 10px;
+}
+
+.admin-start-menu .menu-list li {
+    flex: 1;
+    text-align: center;
+    flex: 1 1 calc(50% - 5px);
+    font-size: large;
+    background-color: #8bd2a3;
+}
+
+.admin-start-menu .menu-list li a {
+    color:darkslategray;
+}
+
+.admin-start-menu .menu-list li a:hover {
+    background-color: #5fb57c;
+}
+
+.accept-button {
+    height: 40px;
+    width: 170px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    margin-left: 20px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #8bd2a3;
+    color: darkslategray;
+}
+
+.accept-button:hover {
+    background-color: #6dcb8c;
+    cursor: pointer;
+}
+
+.reject-button {
+    height: 40px;
+    width: 170px;
+    font-size: medium;
+    text-align: center;
+    padding: 10px 15px;
+    margin-left: 20px;
+    border: solid 0;
+    border-radius: 20px 20px;
+    background-color: #d28b8b;
+    color: darkslategray;
+}
+
+.reject-button:hover {
+    background-color: #cf7373;
+    cursor: pointer;
+}
+
+tr{
+    text-align: center;
+}
+
+h3{
+    font-size: x-large;
+}
+
+table{
+    font-size: medium;
+    margin: auto;
+    margin-bottom: 10vh;
+    margin-top: 5vh;
+}
+
+.date-label{
+    font-size: 16px;
+    margin: 0 20px;
+    margin-top: 20px;
+    position: relative;
+    width: 250px;
+}
+
+/* Removing arrows from input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+
+    .card-container>*:not(.circle-link),
+    .terminal {
+        width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+        height: 16px;
+        margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+        margin-left: 72px;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

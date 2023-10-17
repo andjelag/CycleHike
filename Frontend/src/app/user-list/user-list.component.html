@@ -1,0 +1,36 @@
+<h1 style="text-align: center;">Pregled korisnika koji čekaju na odobravanje članarine</h1>
+<h2 *ngIf="usersNotYetApproved.length == 0" style="text-align: center; margin-top: 20px; margin-bottom: 10vh;">Nema korisnika za prikazivanje</h2>
+<div class="user-info" *ngIf="usersNotYetApproved.length != 0">
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Ime i prezime</th>
+            <th>Telefon</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let user of usersNotYetApproved">
+            <td>{{user.email}}</td>
+            <td>{{user.forename}} {{user.surname}}</td>
+            <td>{{user.phone}}</td>
+            <td><button class="accept-button" (click)="approveUser(user.id)">Odobri članarinu</button></td>
+        </tr>
+    </table>
+</div>
+<h1 style="text-align: center;">Pregled aktivnih korisnika</h1>
+<h2 *ngIf="usersApproved.length == 0" style="text-align: center; margin-top: 20px; margin-bottom: 10vh;">Nema korisnika za prikazivanje</h2>
+<div class="user-info" *ngIf="usersApproved.length != 0">
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Ime i prezime</th>
+            <th>Telefon</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let user of usersApproved">
+            <td>{{user.email}}</td>
+            <td>{{user.forename}} {{user.surname}}</td>
+            <td>{{user.phone}}</td>
+            <td><button class="reject-button" (click)="deactivateUser(user.id)">Poništi članarinu</button></td>
+        </tr>
+    </table>
+</div>
